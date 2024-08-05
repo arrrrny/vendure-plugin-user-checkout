@@ -1,6 +1,6 @@
 {
   "name": "vendure-plugin-user-checkout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Allows externally authenticated users to checkout without email adress and names",
   "author": "ARRRRNY",
   "repository": "https://github.com/arrrrny/vendure-plugin-user-checkout",
