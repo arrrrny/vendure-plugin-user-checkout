@@ -1,2 +1,2 @@
-export const loggerCtx = "ExamplePlugin";
-export const PLUGIN_INIT_OPTIONS = Symbol("PLUGIN_INIT_OPTIONS");
+export const USER_CHECKOUT_PLUGIN_OPTIONS = Symbol('USER_CHECKOUT_PLUGIN_OPTIONS');
+export const loggerCtx = 'UserCheckoutPlugin';

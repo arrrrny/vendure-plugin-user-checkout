@@ -1,36 +1,41 @@
-# Vendure plugin template
+# Vendure Plugin: User Checkout
 
-1. Copy this directory and rename to `vendure-plugin-YOUR-PLUGIN-NAME`
-2. Update the `name` and `description` field in `package.json`
-4. Update this Readme: What does the plugin do? How can someone use your plugin in their project?
-5. Run `npm install` to install the dependencies
-6. Run `npm run start` to start the server
+## Introduction
 
-The admin is now available at `http://localhost:3050/admin`. Login with _superadmin/superadmin_
+The User Checkout Plugin for Vendure allows externally authenticated users to checkout without needing an email address, first name, or last name. The plugin provides strategies to create and determine active orders based on users' external authentication methods, offering flexibility and convenience for both users and administrators.
 
-The shop GraphQL `http://localhost:3050/shop-api`. Here you can test your custom GraphQL query:
-```graphql
-{
-  exampleQuery
-}
+## Features
+
+- **External Authentication Support**: Utilizes external authentication methods to identify users.
+- **Obfuscation Options**: Generates obfuscated email addresses, names, and phone numbers for users.
+- **Automatic Customer Creation**: Automatically creates customer profiles from user details.
+- **Customizable Configuration**: Allows for customization of obfuscation options and using external authentication metadata.
+
+## Usage
+
+1. Add the `UserCheckoutPlugin` to your Vendure server configuration:
+
+```ts
+import { VendureConfig } from '@vendure/core';
+import { UserCheckoutPlugin } from 'vendure-plugin-user-checkout';
+
+export const config: VendureConfig = {
+  // ... other configuration options
+  plugins: [
+    UserCheckoutPlugin.init({
+      useExternalEmailIfExists: true, // Optional, default is true
+      useExternalNameIfExists: true, // Optional, default is true
+      useExternalPhoneNumberIfExists: true, // Optional, default is true
+      useObfuscatedEmail: true, // Optional, default is true
+      useObfuscatePhoneNumber: true, // Optional, default is true
+      useObfuscatedName: true, // Optional, default is true
+      obfuscatedEmailDomain: "zikzak.wtf", // Optional, default is "obfuscated.com"
+      obfuscatedPhoneNumberDigits: 10, // Optional, default is 10
+    }),
+  ],
+};
 ```
 
-## Testing
+## Contributing
 
-1. Run `npm run test` to run the e2e test.
-2. Don't forget to implement your own!
-
-## Publishing to NPM
-
-1. Make sure you are [logged in to NPM](https://docs.npmjs.com/cli/v9/commands/npm-login)
-2. `npm run build`
-3. `npm publish`
-
-That's it!
-
-(Maybe share your accomplishments in the [Vendure Discord](https://vendure.io/community)?
-
-## Next steps
-
-1. Check out [the docs](https://docs.vendure.io/guides/developer-guide/plugins/) to see the possibilities of a plugin
-2. Check out [GraphQL codegen](https://the-guild.dev/graphql/codegen) to generate Typescript types for your custom GraphQL types
+Contributions are welcome! Please open an issue or submit a pull request on the [GitHub repository](https://github.com/arrrrny/vendure-plugin-user-checkout).
